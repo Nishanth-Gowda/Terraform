@@ -1,52 +1,56 @@
 terraform {
-    backend "s3" {
-      bucket = "terraform-up-and-running-state-tf-learning"
-      key = "global/s3/terraform.tfstate"
-      region = "us-east-1"
+  #############################################################
+  ## AFTER RUNNING TERRAFORM APPLY (WITH LOCAL BACKEND)
+  ## YOU WILL UNCOMMENT THIS CODE THEN RERUN TERRAFORM INIT
+  ## TO SWITCH FROM LOCAL BACKEND TO REMOTE AWS BACKEND
+  #############################################################
+   backend "s3" {
+    bucket         = "project-1-tf-state" # REPLACE WITH YOUR BUCKET NAME
+    key            = "project-1/import-bootstrap/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-locking"
+    encrypt        = true
+  }
 
-      dynamodb_table = "terraform-up-and-running-locks"
-      encrypt = true
-    }
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-        version = "~> 4.16"
-
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
     }
   }
 }
 
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  name = "nishanth_devops_terraform_bucket-2023"
+  bucket        = "project-1-tf-state" # YOUR BUCKET NAME
+  force_destroy = true
+}
 
-  lifecycle {
-    prevent_destroy = true
+resource "aws_s3_bucket_versioning" "terraform_bucket_versioning" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
   }
+}
 
-  versioning {
-    enabled = true
-  }
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_crypto_conf" {
+  bucket        = aws_s3_bucket.terraform_state.bucket 
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name = "terraform-up-and-running-locks"
+  name         = "terraform-state-locking"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
-
+  hash_key     = "LockID"
   attribute {
     name = "LockID"
-    type = S
+    type = "S"
   }
 }

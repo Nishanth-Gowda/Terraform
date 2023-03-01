@@ -6,6 +6,9 @@ To get started with this repository, you will need to have Terraform installed o
 
 Learning Resources
 Here are some resources I have found helpful in my Terraform learning journey:
+- Terraform documentation
+- HashiCorp Learn Terraform
+- Terraform Up & Running
 
 Terraform documentation
 HashiCorp Learn Terraform

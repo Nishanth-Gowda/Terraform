@@ -1,4 +1,4 @@
-#Getting Started with AWS Elastic Beanstalk and Terraform
+<h1>Getting Started with AWS Elastic Beanstalk and Terraform</h1>
 
 Amazon Web Services (AWS) Elastic Beanstalk is a service that makes it easy to deploy, run, and scale web applications. In this guide, we will go through the steps to create your first Elastic Beanstalk application using Terraform.
 

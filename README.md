@@ -11,7 +11,7 @@ Here are some resources I have found helpful in my Terraform learning journey:
 - Terraform Up & Running
 
 Terraform documentation
-HashiCorp Learn Terraform
+<a href ="https://registry.terraform.io/providers/hashicorp/aws/latest">HashiCorp Learn Terraform</a>
 Terraform Up & Running
 Terraform Projects
 Here are the projects I have worked on as part of my Terraform learning journey:

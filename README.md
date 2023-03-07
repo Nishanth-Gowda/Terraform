@@ -10,13 +10,26 @@ Here are some resources I have found helpful in my Terraform learning journey:
 - HashiCorp Learn Terraform
 - Terraform Up & Running
 
-Terraform documentation
+<h3>Resources</h3>
+<li>
 <a href ="https://registry.terraform.io/providers/hashicorp/aws/latest">HashiCorp Learn Terraform</a>
-Terraform Up & Running
-Terraform Projects
+</li>
+<li>
+<a href = "https://www.oreilly.com/library/view/terraform-up-and/9781098116736/">Terraform Up & Running</a>
+</li>
+<li>
+<a href = "https://aws.plainenglish.io/use-terraform-to-deploy-jenkins-server-on-ec2-4d173ba7eb54">Use Terraform To Deploy Jenkins Server On EC2</a>
+</li>
+<br>
+<h3>Terraform Projects</h3>
+
 Here are the projects I have worked on as part of my Terraform learning journey:
 
-Project 1: Description of project 1.
-Project 2: Description of project 2.
-Conclusion
+
+Project 1: Simple Application containing a Load Balancer, EC2 instances and an RDS provisioned using terraform.
+<br>
+Project 2: EC2 instance deployment with Jenkins installed using Terraform
+
+<h3>Conclusion</h3>
+
 I hope this repository helps you on your own Terraform learning journey. If you have any questions or feedback, feel free to reach out to me!

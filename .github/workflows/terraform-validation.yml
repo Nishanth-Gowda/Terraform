@@ -1,0 +1,24 @@
+name: Kubernetes Setup GitHub Action
+run-name: ${{github.actor}} made a push
+
+on:
+  push:
+    branches:
+      master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: terraform init
+        uses: robertdebock/terraform-action@1.1.4
+        with:
+          action: init
+          directory: ./project-kubernetes
+      - name: terraform validate
+        uses: robertdebock/terraform-action@1.1.4
+        with:
+          action: validate
+          directory: ./project-kubernetes
